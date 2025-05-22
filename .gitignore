@@ -1,0 +1,6 @@
+# Directory exclusions
+__pycache__/
+venv/
+
+# File exclusions
+variables.py
