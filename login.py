@@ -3,8 +3,7 @@ import getpass
 from users import User
 from database import insert_user
 
-def register_user():
-    username = get_username()
+def register_user(username):
     pw_hash = create_user_password()
     user = User(username, pw_hash)
     insert_user(user)
@@ -42,7 +41,7 @@ user_bytes = input.encode('utf-8')
 print(bcrypt.checkpw(user_bytes, stored_hash))
 """
 
-def get_username() -> str:
+def get_username() -> str: # Deprecated due to REPL functionality
     valid_username = ""
     while True:
         user_input = input("Enter username: ")

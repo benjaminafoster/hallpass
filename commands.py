@@ -1,3 +1,6 @@
+from termcolor import colored
+from login import register_user
+
 class RegisteredCommands():
     def __init__(self):
         self.commands = dict()
@@ -22,10 +25,14 @@ def register(*args):
         print("The register command only accepts 1 user per call. Usage: register <username>")
     else:
         args_list = args[0]
-        print(f'registering {args_list[0]}...')
+        username = args_list[0]
+        print(f'registering {username}...')
+        try:
+            register_user(username)
+            print(colored("User successfully created!", "green"))
+        except Exception as e:
+            print(f'Error: {e}')
             
-
-
 def login(*args):
     print("log in a current user")
 
