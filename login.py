@@ -1,13 +1,23 @@
 import bcrypt
 import getpass
+from termcolor import colored
 from users import User
-from database import insert_user, user_exists
+from database import insert_user, user_exists, get_user
 
-# highest order function to handle logging in a user
+# highest order function to handle logging in a user, returns username as string if successful
 def login(username):
-    password = getpass.getpass("Enter password: ")
+    if user_exists(username):
+        record = get_user(username)
+        stored_hash = record["password"] # type: ignore
+        password = getpass.getpass("Enter password: ")
+        user_bytes = password.encode('utf-8')
+        if bcrypt.checkpw(user_bytes, stored_hash):
+            print(colored("login successful!", 'green'))
+            return username
+    else:
+        raise ValueError("login failed. check your password and try again")
 
-
+login("winston")
 # highest level function to handle registering a user in the HallPass db 'users' table
 def register_user(username):
     if user_exists(username):

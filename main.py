@@ -1,5 +1,5 @@
 import sys
-from login import register_user
+#from login import register_user
 from repl import Repl
 from commands import registered_commands
 

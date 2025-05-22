@@ -21,7 +21,7 @@ class Command():
 registered_commands = RegisteredCommands() # available to main as export
 
 # collection of available commands
-def register(*args):
+def register(cfg, *args):
     if len(args[0]) < 1:
         print("A user must be specified. Usage: register <username>")
     elif len(args[0]) > 1:
@@ -29,16 +29,17 @@ def register(*args):
     else:
         args_list = args[0]
         username = args_list[0]
+        print(f'registering {username}...')
         try:
             register_user(username)
             print(colored("User successfully created!", "green"))
         except Exception as e:
             print(f'Error: {e}')
             
-def login(*args):
+def login(cfg, *args):
     print("log in a current user")
 
-def help(*args):
+def help(cfg, *args):
     for cmd_str, cmd_obj in registered_commands.commands.items():
         print(f'{cmd_str}: {cmd_obj.description}')
 

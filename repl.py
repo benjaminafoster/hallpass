@@ -30,3 +30,5 @@ class Repl(code.InteractiveConsole):
             self.registered_commands.commands[command].cmd(args)
         except KeyError as e:
             print(f'The command {e} does not exist')
+        except Exception as ex:
+            print(f'Error: {ex}')

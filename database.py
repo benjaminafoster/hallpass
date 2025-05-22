@@ -10,11 +10,13 @@ def insert_user(user:User):
         "password":user.password
     })
 
+# function that checks if a user already exists in the database
 def user_exists(username:str) -> bool:
     if get_user(username):
         return True
     return False
 
+# funciton that queries the database for user based on username
 def get_user(username:str):
     db = sqlite_utils.Database(DB_FILENAME)
     result = db.query(f'SELECT * FROM users where username=?', [username])
