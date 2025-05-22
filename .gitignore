@@ -4,3 +4,4 @@ venv/
 
 # File exclusions
 variables.py
+hallpass.db
