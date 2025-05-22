@@ -1,6 +1,7 @@
 from termcolor import colored
 from login import register_user
 
+# definitions for commands registry and command classes
 class RegisteredCommands():
     def __init__(self):
         self.commands = dict()
@@ -16,8 +17,10 @@ class Command():
     def register_command(self, reg_cmd_obj):
         reg_cmd_obj.commands[self.name] = self
 
-registered_commands = RegisteredCommands()
+# instantiate commands registry
+registered_commands = RegisteredCommands() # available to main as export
 
+# collection of available commands
 def register(*args):
     if len(args[0]) < 1:
         print("A user must be specified. Usage: register <username>")
@@ -40,7 +43,7 @@ def help(*args):
     for cmd_str, cmd_obj in registered_commands.commands.items():
         print(f'{cmd_str}: {cmd_obj.description}')
 
-
+# instantiate commands
 Command("register", "registers new user", register, registered_commands)
 Command("login", "logs in an existing user", login, registered_commands)
 Command("help", "lists available commands", help, registered_commands)

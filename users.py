@@ -1,3 +1,4 @@
+# class definition for 'User' class
 class User:
     def __init__(self, username:str, password:bytes):
         self.username = username

@@ -3,11 +3,13 @@ import getpass
 from users import User
 from database import insert_user
 
+# highest level function to handle registering a user in the HallPass db 'users' table
 def register_user(username):
     pw_hash = create_user_password()
     user = User(username, pw_hash)
     insert_user(user)
 
+# interactive interface for securely creating a bcrypt-hashed password for user login
 def create_user_password() -> bytes:
     password_hash = b''
     while True:
@@ -23,7 +25,7 @@ def create_user_password() -> bytes:
             break
     return password_hash
 
-
+# funtion that standardizes bcrypt hashed password creation
 def get_bcrypt_password_hash(password:str) -> bytes:
     bytes = password.encode('utf-8')
     salt = bcrypt.gensalt()
@@ -41,7 +43,8 @@ user_bytes = input.encode('utf-8')
 print(bcrypt.checkpw(user_bytes, stored_hash))
 """
 
-def get_username() -> str: # Deprecated due to REPL functionality
+# Deprecated due to REPL functionality
+def get_username() -> str: 
     valid_username = ""
     while True:
         user_input = input("Enter username: ")
