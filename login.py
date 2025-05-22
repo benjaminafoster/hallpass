@@ -53,5 +53,3 @@ def get_username() -> str:
             valid_username = username
             break
     return valid_username
-
-register_user()

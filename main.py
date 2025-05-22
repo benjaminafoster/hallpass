@@ -1,7 +1,11 @@
-from login import get_username
+import sys
+from login import register_user
 
 def main():
-    username = get_username()
-    print(username)
+    try:
+        register_user()
+    except KeyboardInterrupt:
+        print("\nEnding program...")
+        sys.exit()
 
 main()
