@@ -9,3 +9,18 @@ def insert_user(user:User):
         "username":user.username,
         "password":user.password
     })
+
+def user_exists(username:str) -> bool:
+    if get_user(username):
+        return True
+    return False
+
+def get_user(username:str):
+    db = sqlite_utils.Database(DB_FILENAME)
+    result = db.query(f'SELECT * FROM users where username=?', [username])
+    results_list = list(result)
+    if results_list:
+        record = results_list[0]
+        return record
+    else:
+        return None

@@ -29,7 +29,6 @@ def register(*args):
     else:
         args_list = args[0]
         username = args_list[0]
-        print(f'registering {username}...')
         try:
             register_user(username)
             print(colored("User successfully created!", "green"))

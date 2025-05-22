@@ -1,13 +1,21 @@
 import bcrypt
 import getpass
 from users import User
-from database import insert_user
+from database import insert_user, user_exists
+
+# highest order function to handle logging in a user
+def login(username):
+    password = getpass.getpass("Enter password: ")
+
 
 # highest level function to handle registering a user in the HallPass db 'users' table
 def register_user(username):
-    pw_hash = create_user_password()
-    user = User(username, pw_hash)
-    insert_user(user)
+    if user_exists(username):
+        raise Exception("user already exists")
+    else:
+        pw_hash = create_user_password()
+        user = User(username, pw_hash)
+        insert_user(user)
 
 # interactive interface for securely creating a bcrypt-hashed password for user login
 def create_user_password() -> bytes:
