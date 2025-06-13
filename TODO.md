@@ -1,6 +1,9 @@
 # HallPass
 A Python-based CLI password manager
 
+### State of the Project
+- 06/13/2025: need to modify the way that the REPL is handling command execution to pass a configuration mechanism (that contains logged in user name) alongside the command and arguments list.
+
 ### To-do
 
 

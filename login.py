@@ -17,7 +17,7 @@ def login(username):
     else:
         raise ValueError("login failed. check your password and try again")
 
-login("winston")
+
 # highest level function to handle registering a user in the HallPass db 'users' table
 def register_user(username):
     if user_exists(username):
